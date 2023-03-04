@@ -1,1 +1,1 @@
-# quran-ayah-csv-parser
+# Quran Ayah CSV Parser
