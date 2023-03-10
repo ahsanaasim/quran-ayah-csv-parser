@@ -29,7 +29,9 @@ def converSuraAyahNumber():
     
 def getFirstAyah():
     quran = QuranReader()
-    return quran.getAyah(1, 1)
+    file = open("last read aya.txt", 'w')
+    file.write("1,1")
+    return quran.getAyah(1,1)
 
 def getAyah():
     result = converSuraAyahNumber()
@@ -41,6 +43,24 @@ def getAyah():
 if os.path.exists("last read aya.txt"):
     if isValidSuraAya():
         ayah = getAyah()
+        if ayah['ayah']=='not-found':
+            ayah['surahIndex'] = ayah['surahIndex'] + 1
+            passinValue = (str(ayah['surahIndex'])+","+'1')
+            fw = open("last read aya.txt", 'w')
+            fw.write(passinValue)
+            ayah = getAyah()
+            fw.close()
+        elif ayah['surah'] == 'not-found':
+            
+            print("end")
+        else:
+            ayah['ayahIndex'] = ayah['ayahIndex'] +1
+            passinValue = (str(ayah['surahIndex'])+","+str(ayah['ayahIndex']))
+            fw = open("last read aya.txt", 'w')
+            fw.write(passinValue)
+            ayah = getAyah()
+            fw.close()
+        
         print(ayah)
     else:
         ayah = getFirstAyah()
@@ -48,3 +68,5 @@ if os.path.exists("last read aya.txt"):
 else:
     ayah = getFirstAyah()
     print(ayah)
+
+

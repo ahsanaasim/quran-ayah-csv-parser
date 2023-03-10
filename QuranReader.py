@@ -19,3 +19,5 @@ class QuranReader:
                         target['ayah'] = ayah.attrib['text']
                         return target
         return target
+    
+    
